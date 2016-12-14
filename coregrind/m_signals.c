@@ -2712,7 +2712,7 @@ static Bool extend_stack_if_appropriate(ThreadId tid, vki_siginfo_t* info)
                    info->si_code, fault, tid, esp, seg->start, seg->end);
    }
 
-   if (info->si_code == VKI_SEGV_MAPERR
+   if ( (info->si_code == VKI_SEGV_MAPERR || info->si_code == VKI_SEGV_MADE_UP_GPF)
        && seg
        && seg->kind == SkResvn
        && seg->smode == SmUpper
